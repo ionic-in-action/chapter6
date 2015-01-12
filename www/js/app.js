@@ -12,6 +12,11 @@ angular.module('App', ['ionic'])
       url: '/settings',
       controller: 'SettingsController',
       templateUrl: 'views/settings/settings.html'
+    })
+    .state('weather', {
+      url: '/weather/:city/:lat/:lng',
+      controller: 'WeatherController',
+      templateUrl: 'views/weather/weather.html'
     });
 
   $urlRouterProvider.otherwise('/search');
