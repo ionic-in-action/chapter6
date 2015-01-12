@@ -1,0 +1,13 @@
+<ion-view view-title="Find Locations">
+  <ion-content>
+    <div class="list">
+      <div class="item item-input-inset">
+        <label class="item-input-wrapper">
+          <input type="search" ng-model="model.term" placeholder="Search for a location">
+        </label>
+        <button class="button button-small button-positive" ng-click="search()">Submit</button>
+      </div>
+      <div class="item" ng-repeat="result in results" ui-sref="weather({city: result.formatted_address, lat: result.geometry.location.lat, lng: result.geometry.location.lng})">{{result.formatted_address}}</div>
+    </div>
+  </ion-content>
+</ion-view>
