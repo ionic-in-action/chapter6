@@ -1,0 +1,21 @@
+<ion-view view-title="Settings">
+  <ion-content>
+    <ion-list>
+      <ion-item class="item-divider">Units</ion-item>
+      <ion-radio ng-model="settings.units" ng-value="'us'">Imperial (Fahrenheit)</ion-radio>
+      <ion-radio ng-model="settings.units" ng-value="'si'">Metric (Celsius)</ion-radio>
+      <div class="item item-divider">Days in forecast <span class="badge badge-dark">{{settings.days - 1}}</span></div>
+      <div class="item range range-positive">
+        2 <input type="range" name="days" ng-model="settings.days" min="2" max="8" value="8"> 8
+      </div>
+      <div class="item item-button-right">Favorites <button class="button button-small" ng-click="canDelete = !canDelete">{{canDelete ? 'Done' : 'Edit'}}</button></div>
+    </ion-list>
+    <ion-list show-delete="canDelete">
+      <ion-item ng-repeat="location in locations">
+        <ion-delete-button class="ion-minus-circled" ng-click="remove($index)"></ion-delete-button>
+        {{location.city}}
+      </ion-item>
+    </ion-list>
+    <p class="padding">Weather data powered by <a href="https://developer.forecast.io/docs/v2">Forecast.io</a> and geocoding powered by <a href="https://developers.google.com/maps/documentation/geocoding/">Google</a>.</p>
+  </ion-content>
+</ion-view>
