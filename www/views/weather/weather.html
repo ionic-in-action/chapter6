@@ -1,4 +1,10 @@
 <ion-view view-title="{{params.city}}">
+  <ion-nav-buttons side="left">
+    <button class="button button-clear" menu-toggle="left"><span class="icon ion-navicon"></span></button>
+  </ion-nav-buttons>
+  <ion-nav-buttons side="right">
+    <button class="button button-icon" ng-click="showOptions()"><span class="icon ion-more"></span></button>
+  </ion-nav-buttons>
   <ion-content>
     <ion-scroll direction="y" paging="true" ng-style="{width: getWidth(), height: getHeight()}">
       <div ng-style="{height: getTotalHeight()}">
