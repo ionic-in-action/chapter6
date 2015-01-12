@@ -1,0 +1,13 @@
+<ion-modal-view>
+  <ion-header-bar class="bar-dark">
+    <h1 class="title">Sunrise, Sunset Chart</h1>
+    <button class="button button-clear" ng-click="hideModal()">Close</button>
+  </ion-header-bar>
+  <ion-content>
+    <div class="list">
+      <div class="item" collection-repeat="day in chart">
+        {{day.sunrise | date:'MMM d'}}: {{day.sunrise | date:'shortTime'}}, {{day.sunset | date:'shortTime'}}
+      </div>
+    </div>
+  </ion-content>
+</ion-modal-view>
