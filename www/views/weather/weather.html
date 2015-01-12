@@ -1,6 +1,45 @@
 <ion-view view-title="{{params.city}}">
   <ion-content>
-    <h3>Current Conditions</h3>
-    <p>{{forecast.currently.temperature | number:0}}&deg;</p>
+    <ion-scroll direction="y" paging="true" ng-style="{width: getWidth(), height: getHeight()}">
+      <div ng-style="{height: getTotalHeight()}">
+        <div class="scroll-page center" ng-style="{width: getWidth(), height: getHeight()}">
+          <div class="bar bar-dark">
+            <h1 class="title">Current Conditions</h1>
+          </div>
+          <div class="has-header">
+            <h2 class="primary">{{forecast.currently.temperature | number:0}}&deg;</h2>
+            <h2 class="secondary icon" ng-class="forecast.currently.icon | icons"></h2>
+            <p>{{forecast.currently.summary}}</p>
+            <p>High: {{forecast.daily.data[0].temperatureMax | number:0}}&deg; Low: {{forecast.daily.data[0].temperatureMin | number:0}}&deg; Feels Like: {{forecast.currently.apparentTemperature | number:0}}&deg;</p>
+            <p>Wind: {{forecast.currently.windSpeed | number:0}} <span class="icon wind-icon ion-ios7-arrow-thin-up" ng-style="{transform: 'rotate(' + forecast.currently.windBearing + 'deg)'}"></span></p>
+          </div>
+        </div>
+        <div class="scroll-page" ng-style="{width: getWidth(), height: getHeight()}">
+          <div class="bar bar-dark">
+            <h1 class="title">Daily Forecast</h1>
+          </div>
+          <div class="has-header">
+            <p class="padding">{{forecast.daily.summary}}</p>
+            <div class="row" ng-repeat="day in forecast.daily.data | limitTo:settings.days">
+              <div class="col col-50">{{day.time + '000' | date:'EEEE'}}</div>
+              <div class="col"><span class="icon" ng-class="day.icon | icons"></span><sup>{{day.precipProbability | chance}}</sup></div>
+              <div class="col">{{day.temperatureMax | number:0}}&deg;</div>
+              <div class="col">{{day.temperatureMin | number:0}}&deg;</div>
+            </div>
+          </div>
+        </div>
+        <div class="scroll-page" ng-style="{width: getWidth(), height: getHeight()}">
+          <div class="bar bar-dark">
+            <h1 class="title">Weather Stats</h1>
+          </div>
+          <div class="list has-header">
+            <div class="item">Sunrise: {{forecast.daily.data[0].sunriseTime | timezone:forecast.timezone}}</div>
+            <div class="item">Sunset: {{forecast.daily.data[0].sunsetTime | timezone:forecast.timezone}}</div>
+            <div class="item">Visibility: {{forecast.currently.visibility}}</div>
+            <div class="item">Humidity: {{forecast.currently.humidity * 100}}%</div>
+          </div>
+        </div>
+      </div>
+    </ion-scroll>
   </ion-content>
 </ion-view>
