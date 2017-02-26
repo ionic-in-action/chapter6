@@ -4,7 +4,7 @@
   "proxies": [
     {
       "path": "/api/forecast",
-      "proxyUrl": "https://api.forecast.io/forecast/e33b593dcdddc5bfaa38a4babc79d95a/"
+      "proxyUrl": "https://api.darksky.net/forecast/e33b593dcdddc5bfaa38a4babc79d95a/"
     }
   ]
 }
